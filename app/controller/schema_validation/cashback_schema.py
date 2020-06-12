@@ -1,9 +1,0 @@
-from marshmallow import Schema, fields
-from marshmallow.validate import Length
-
-class CashBackInputSchema(Schema):
-    name = fields.Str(required=True, validate=Length(min=1))
-    surname = fields.Str(required=True, validate=Length(min=1))
-    cpf = fields.Str(required=True, validate=Length(equal=11))
-    email = fields.Str(required=True, validate=Length(min=1)) #email validation can be improved using regex
-    password = fields.Str(required=True, validate=Length(min=8))

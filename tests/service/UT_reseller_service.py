@@ -1,7 +1,7 @@
 import unittest
 from mock import MagicMock
-from app.service.reseller_service import ResellerService
-from app.dao.reseller_dao import ResellerDao
+from app.services.reseller import ResellerService
+from app.database.data_access import ResellerDao
 
 class ResellerServiceTest(unittest.TestCase) :
     

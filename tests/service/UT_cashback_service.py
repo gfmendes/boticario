@@ -1,5 +1,5 @@
 import unittest
-from app.service.cashback_service import CashbackService
+from app.services.cashback import CashbackService
 
 class CashbackServiceTest(unittest.TestCase) :
     
