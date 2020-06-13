@@ -7,8 +7,10 @@ class ResellerServiceTest(unittest.TestCase) :
     
     def test_when_add(self):
         #Given
+        reseller = {}
+        reseller['password'] = '123456'
         dao = ResellerDao()
-        dao.add = MagicMock(return_value=123)
-        ResellerService().add("test")
+        dao.add = MagicMock(return_value='123456')
+        ResellerService().add_reseller(reseller)
         #then
         self.assertEqual(123, 123)

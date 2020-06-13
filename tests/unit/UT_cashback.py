@@ -1,12 +1,12 @@
 import unittest
-from app.services.cashback import CashbackService
+from app.services.cashback import CashBackService
 
-class CashbackServiceTest(unittest.TestCase) :
+class CashBackServiceTest(unittest.TestCase) :
     
     def test_get_reseller_cashback(self):
         #given
         cpf = "05134344"
         #when
-        result = CashbackService().get_reseller_cashback(cpf)
+        result = CashBackService().get_reseller_cashback(cpf)
         #then
         self.assertEqual(cpf*2, result)
