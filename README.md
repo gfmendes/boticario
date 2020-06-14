@@ -23,7 +23,7 @@ tests/
    |--services/  
      |--test_purchase.py  
      |--test_reseller.py  
-<pre>
+</pre>
 
 ## Running the application:
 #(unix)
