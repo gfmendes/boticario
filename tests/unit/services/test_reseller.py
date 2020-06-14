@@ -1,7 +1,7 @@
 import unittest, hashlib
 from mock import MagicMock
-from app.services.reseller import ResellerService
-from app.data.data_access import ResellerData, CashBackData
+from cashback.services.reseller import ResellerService
+from cashback.data.data_access import ResellerData, CashBackData
 
 class ResellerServiceTest(unittest.TestCase) :
     

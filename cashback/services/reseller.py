@@ -1,7 +1,7 @@
 import json
 import hashlib
 import logging
-from app.data.data_access import ResellerData, CashBackData
+from cashback.data.data_access import ResellerData, CashBackData
 
 ERROR_CPF_EXISTS = {"error" : "cpf exists"}
 ERROR_EMAIL_EXISTS = {"error" : "email exists"}

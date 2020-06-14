@@ -1,9 +1,9 @@
-from app.controller.schema_validation import (AuthInputSchema,
+from cashback.controller.schema_validation import (AuthInputSchema,
                                               CashBackInputSchema,
                                               PurchaseInputSchema,
                                               ResellerInputSchema)
-from app.services.purchase import PurchaseService
-from app.services.reseller import ResellerService
+from cashback.services.purchase import PurchaseService
+from cashback.services.reseller import ResellerService
 from flask_restful import Resource, request
 
 

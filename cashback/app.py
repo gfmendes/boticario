@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_restful import Api
-from app.routes import init_routes
+from cashback.routes import init_routes
 
 app = Flask(__name__)
 api = Api(app)

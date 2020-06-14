@@ -1,7 +1,7 @@
 import unittest
 from mock import MagicMock
-from app.services.purchase import PurchaseService
-from app.data.data_access import ResellerData, PurchaseData
+from cashback.services.purchase import PurchaseService
+from cashback.data.data_access import ResellerData, PurchaseData
 
 class PurchaseServiceTest(unittest.TestCase) :
     

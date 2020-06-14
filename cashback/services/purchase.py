@@ -1,6 +1,6 @@
 import logging
 import datetime
-from app.data.data_access import ResellerData, PurchaseData
+from cashback.data.data_access import ResellerData, PurchaseData
 
 PRE_APPROVED_RESELLERS = ['15350946056'] #This data should be externalized in an API call or database
 

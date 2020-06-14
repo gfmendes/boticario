@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_restful import Api
-from app.controller.resources import ResellerResource, AuthResource, PurchaseResource, PurchaseListResource, CashbackResource
+from cashback.controller.resources import ResellerResource, AuthResource, PurchaseResource, PurchaseListResource, CashbackResource
 
 def init_routes(api):
     api.add_resource(ResellerResource, '/reseller/')
