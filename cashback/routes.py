@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_restful import Api
+
 from cashback.controller.resources import ResellerResource, AuthResource, PurchaseResource, PurchaseListResource, CashbackResource
 
 def init_routes(api):
