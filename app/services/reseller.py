@@ -9,8 +9,7 @@ ERROR_EMAIL_EXISTS = {"error" : "email exists"}
 class ResellerService():
   def add_reseller(self, reseller):
     errors = self.__check_reseller_exists(reseller)
-    if errors:
-      return errors
+    if errors: return errors
     
     reseller['password'] = self.__hash_password(reseller['password'])
     ResellerData().add_reseller(reseller)

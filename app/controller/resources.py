@@ -28,12 +28,9 @@ class PurchaseResource(Resource):
     if errors:
         return str(errors), 400
 
-    #business checks
-    errors = PurchaseService().validate_purchase(request.get_json())
-    if errors:
-        return str(errors), 400
+    result = PurchaseService().add_purchase(request.get_json())
+    return (result, 400) if 'error' in result.keys() else (result, 201)
 
-    return PurchaseService().add_purchase(request.get_json()), 201
 
 class PurchaseListResource(Resource):
   def get(self, cpf):
@@ -47,8 +44,4 @@ class ResellerResource(Resource):
         return str(errors), 400
 
     result = ResellerService().add_reseller(request.get_json())
-    
-    if 'error' in result:
-      return result, 400
-    else:
-      return result, 201
+    return (result, 400) if 'error' in result.keys() else (result, 201)

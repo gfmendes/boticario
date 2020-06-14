@@ -7,16 +7,16 @@ class PurchaseData():
   def add_purchase(self, purchase):
     return PurchaseCollection().add(purchase)
   
-  def find_monthly_purchases(self, key):
-    return PurchaseCollection().find_all_current_month(key)
+  def find_monthly_purchases(self, params):
+    return PurchaseCollection().find_all_per_month(params)
 
 class ResellerData():
   def add_reseller(self, reseller):
     return ResellerCollection().add(reseller)
   
-  def find_reseller(self, key):
-    return ResellerCollection().find_one(key)
+  def find_reseller(self, params):
+    return ResellerCollection().find_one(params)
 
 class CashBackData():
-  def get_cashback_amount(self, key):
-    return CashBackAPI().get_cashback_amount(key)
+  def get_cashback_amount(self, params):
+    return CashBackAPI().get_cashback_amount(params)
