@@ -1,7 +1,7 @@
 import json
 import hashlib
 import logging
-from cashback.data.data_access import ResellerData, CashBackData
+from cashback.data.data_access import ResellerData
 
 ERROR_CPF_EXISTS = {"error" : "cpf exists"}
 ERROR_EMAIL_EXISTS = {"error" : "email exists"}
@@ -13,7 +13,7 @@ class ResellerService():
     
     reseller['password'] = self.__hash_password(reseller['password'])
     ResellerData().add_reseller(reseller)
-    return {"success": str(reseller)}
+    return reseller
         
   def __check_reseller_exists(self, reseller):
     email_check = ResellerData().find_reseller({"email" : reseller['email']})
@@ -32,9 +32,6 @@ class ResellerService():
     else :
         return False
 
-  def get_cashback_amount(self, cpf):      
-    return CashBackData().get_cashback_amount(cpf)
-  
   def __hash_password(self, password) :
           return hashlib.sha256(password.encode('utf8')).hexdigest()
 

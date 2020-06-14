@@ -1,7 +1,7 @@
 import unittest
 from mock import MagicMock
 from cashback.services.purchase import PurchaseService
-from cashback.data.data_access import ResellerData, PurchaseData
+from cashback.data.data_access import ResellerData, PurchaseData, CashBackData
 
 class PurchaseServiceTest(unittest.TestCase) :
     
@@ -103,3 +103,13 @@ class PurchaseServiceTest(unittest.TestCase) :
     purchases = PurchaseService().list_current_month_purchases('05138897965')
     #then
     self.assertEqual([], purchases)
+
+  def test_when_get_cash_back_amount_then_return_credit(self):
+    #Given
+    cpf = {"cpf":"15350946051"}
+    #mocking data layer
+    CashBackData.get_cashback_amount = MagicMock(return_value={"credit": 1692})
+    #when
+    result = PurchaseService().get_cashback_amount(cpf)
+    #then
+    self.assertIn('credit', result.keys())

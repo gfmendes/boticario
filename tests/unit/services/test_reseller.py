@@ -1,7 +1,7 @@
 import unittest, hashlib
 from mock import MagicMock
 from cashback.services.reseller import ResellerService
-from cashback.data.data_access import ResellerData, CashBackData
+from cashback.data.data_access import ResellerData
 
 class ResellerServiceTest(unittest.TestCase) :
     
@@ -14,7 +14,8 @@ class ResellerServiceTest(unittest.TestCase) :
     #when
     result = ResellerService().add_reseller(reseller)
     #then
-    self.assertIn('success', result.keys())
+    self.assertIn('cpf', result.keys())
+    self.assertIn('email', result.keys())
 
   def test_when_add_existent_customer_then_error(self):
     #Given
@@ -48,13 +49,3 @@ class ResellerServiceTest(unittest.TestCase) :
     result = ResellerService().validate_reseller_password(login_data)
     #then
     self.assertFalse(result)
-
-  def test_when_get_cash_back_amount_then_return_credit(self):
-    #Given
-    cpf = {"cpf":"15350946051"}
-    #mocking data layer
-    CashBackData.get_cashback_amount = MagicMock(return_value={"credit": 1692})
-    #when
-    result = ResellerService().get_cashback_amount(cpf)
-    #then
-    self.assertIn('credit', result.keys())
