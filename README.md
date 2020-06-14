@@ -1,6 +1,6 @@
-#Proposed solution to Boticario's backend challenge.
+# Proposed solution to Boticario's backend challenge.
 
-##Modules description:
+## Modules description:
 cashback/
 |--controller
    |--business_resources.py 
@@ -24,7 +24,7 @@ tests/
      |--test_reseller.py
 
 
-##Running the application:
+## Running the application:
 1) Set FLASK_APP env property:
   (unix) export FLASK_APP=cashback/app.py 
   (windows) set FLASK_APP=cashback/app.py #windows
@@ -32,12 +32,12 @@ tests/
 2) Run flask:  
   flask run
 
-##Running all UT and IT tests:
+## Running all UT and IT tests:
   python -m unittest discover
   
-##Run UT tests from services layer:
+## Run UT tests from services layer:
   python -m unittest tests/unit/services/test_purchase.py  
   python -m unittest tests/unit/services/test_reseller.py  
 
-##Run IT tests:
+## Run IT tests:
   python -m unittest tests/integration/test_routes.py   
