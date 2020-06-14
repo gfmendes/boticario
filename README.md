@@ -1,6 +1,7 @@
 # Proposed solution to Boticario's backend challenge.
 
 ## Modules description:
+<pre>
 cashback/  
 |--controller  
    |--business_resources.py   
@@ -22,15 +23,20 @@ tests/
    |--services/  
      |--test_purchase.py  
      |--test_reseller.py  
-
+<pre>
 
 ## Running the application:
-1) Set FLASK_APP env property:
-  (unix) export FLASK_APP=cashback/app.py 
-  (windows) set FLASK_APP=cashback/app.py #windows
-  (windows) $env:FLASK_APP="cashback/app.py" #windows
-2) Run flask:  
-  flask run
+#(unix)
+> export FLASK_APP=cashback/app.py  
+> flask run
+
+#Windows cmd
+> set FLASK_APP=cashback/app.py  
+> flask run
+
+#Windows powershell
+> $env:FLASK_APP="cashback/app.py"  
+> flask run
 
 ## Running all UT and IT tests:
   python -m unittest discover
