@@ -8,7 +8,6 @@ ERROR_EMAIL_EXISTS = {"error" : "email exists"}
 
 class ResellerService():
   def add_reseller(self, reseller):
-    
     errors = self.__check_reseller_exists(reseller)
     if errors:
       return errors
@@ -29,8 +28,6 @@ class ResellerService():
   def validate_reseller_password(self, login_data):
     password = self.__hash_password(login_data['password'])
     reseller = ResellerData().find_reseller({"email" : login_data['email']})
-    logging.warn(password)
-    logging.warn(reseller)
     if (reseller and reseller['password'] == password) :
         return True
     else :

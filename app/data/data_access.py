@@ -3,7 +3,6 @@ from app.data.rest_apis import CashBackAPI
 
 #This module is a layer of abstraction between services and data access objects
 #this way it is possible to change how data is fetch without change service modules
-
 class PurchaseData():
   def add_purchase(self, purchase):
     return PurchaseCollection().add(purchase)

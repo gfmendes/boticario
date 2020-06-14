@@ -7,4 +7,4 @@ Dev
 Prod
 
 To run tests:
-    python setup.py test
+    python -m unittest discover

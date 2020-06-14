@@ -9,6 +9,7 @@ from flask_restful import Resource, request
 
 class AuthResource(Resource):
   def post(self):
+    #data input validations
     errors = AuthInputSchema().validate(request.get_json())
     if errors:
       return str(errors), 400
@@ -44,6 +45,7 @@ class ResellerResource(Resource):
     errors = ResellerInputSchema().validate(request.get_json())
     if errors:
         return str(errors), 400
+
     result = ResellerService().add_reseller(request.get_json())
     
     if 'error' in result:
