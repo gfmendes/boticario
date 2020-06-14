@@ -26,7 +26,7 @@ class PurchaseService():
     return purchases
   
   def __apply_cache_back(self, total_amount, amount):
-    if total_amount < 1000 : return amount * 0.1
-    elif total_amount < 1500 : return amount * 0.15  
+    if total_amount <= 1000 : return amount * 0.1
+    elif total_amount <= 1500 : return amount * 0.15  
     else: return amount * 0.2 
 

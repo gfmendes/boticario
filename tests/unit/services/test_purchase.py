@@ -40,10 +40,10 @@ class PurchaseServiceTest(unittest.TestCase) :
     #then
     self.assertIn('error', result.keys())   
 
-  def test_when_amount_purchase_lt_1000_then_apply_10_percent(self):
+  def test_when_amount_purchases_lt_1000_then_apply_10_percent(self):
     #Given
     #mocking data layer
-    PurchaseData.find_monthly_purchases = MagicMock(return_value=[{"amount": 500.01}, {"amount": 499.98}])
+    PurchaseData.find_monthly_purchases = MagicMock(return_value=[{"amount": 500.01}])
     #when
     purchases = PurchaseService().list_current_month_purchases('05138897965')
     #then
@@ -51,7 +51,7 @@ class PurchaseServiceTest(unittest.TestCase) :
       self.assertIn('cash_back', p.keys())
       self.assertEqual(p['amount'] * 0.1, p['cash_back'])
 
-  def test_when_amount_purchase_eq_1000_then_apply_15_percent(self):
+  def test_when_amount_purchases_eq_1000_then_apply_10_percent(self):
     #Given
     #mocking data layer
     PurchaseData.find_monthly_purchases = MagicMock(return_value=[{"amount": 500.01}, {"amount": 499.99}])
@@ -60,10 +60,20 @@ class PurchaseServiceTest(unittest.TestCase) :
     #then
     for p in purchases:
       self.assertIn('cash_back', p.keys())
+      self.assertEqual(p['amount'] * 0.1, p['cash_back'])
+
+  def test_when_amount_purchases_lt_1500_then_apply_15_percent(self):
+    #Given
+    #mocking data layer
+    PurchaseData.find_monthly_purchases = MagicMock(return_value=[{"amount": 500.01}, {"amount": 499.99}, {"amount": 1.99}])
+    #when
+    purchases = PurchaseService().list_current_month_purchases('05138897965')
+    #then
+    for p in purchases:
+      self.assertIn('cash_back', p.keys())
       self.assertEqual(p['amount'] * 0.15, p['cash_back'])
 
-
-  def test_when_amount_purchase_lt_1500_then_apply_15_percent(self):
+  def test_when_amount_purchases_eq_1500_then_apply_15_percent(self):
     #Given
     #mocking data layer
     PurchaseData.find_monthly_purchases = MagicMock(return_value=[{"amount": 500.01}, {"amount": 499.99}, {"amount": 499.99}])
@@ -74,13 +84,22 @@ class PurchaseServiceTest(unittest.TestCase) :
       self.assertIn('cash_back', p.keys())
       self.assertEqual(p['amount'] * 0.15, p['cash_back'])
 
-  def test_when_amount_purchase_eq_gt_1500_then_apply_20_percent(self):
+  def test_when_amount_purchases_gt_1500_then_apply_20_percent(self):
     #Given
     #mocking data layer
-    PurchaseData.find_monthly_purchases = MagicMock(return_value=[{"amount": 500.01}, {"amount": 499.99}, {"amount": 500.00}])
+    PurchaseData.find_monthly_purchases = MagicMock(return_value=[{"amount": 500.01}, {"amount": 499.99}, {"amount": 500.01}])
     #when
     purchases = PurchaseService().list_current_month_purchases('05138897965')
     #then
     for p in purchases:
       self.assertIn('cash_back', p.keys())
       self.assertEqual(p['amount'] * 0.2, p['cash_back'])
+
+  def test_when_no_purchases_then_empty_list(self):
+    #Given
+    #mocking data layer
+    PurchaseData.find_monthly_purchases = MagicMock(return_value=[])
+    #when
+    purchases = PurchaseService().list_current_month_purchases('05138897965')
+    #then
+    self.assertEqual([], purchases)
