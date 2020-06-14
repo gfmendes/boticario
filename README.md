@@ -4,9 +4,9 @@
 <pre>
 cashback/  
 |--controller  
-   |--business_resources.py   
-   |--login_resources.py  
-   |--schema_validation.py  
+   |--business_resources.py > Endpoints related to business logic such as add reseller, list purchases, etc.
+   |--login_resources.py > Endpoints related to login and auth token data
+   |--schema_validation.py > Json schema validations for each endpoint
 |--data/  
    |--data_access.py  
    |--mongo_collections.py  
@@ -26,7 +26,7 @@ tests/
 </pre>
 
 ## Running the application:
-#(unix)
+#Unix
 > export FLASK_APP=cashback/app.py  
 > flask run
 
@@ -34,16 +34,16 @@ tests/
 > set FLASK_APP=cashback/app.py  
 > flask run
 
-#Windows powershell
+#Windows PowerShell
 > $env:FLASK_APP="cashback/app.py"  
 > flask run
 
 ## Running all UT and IT tests:
-  python -m unittest discover
+> python -m unittest discover
   
 ## Run UT tests from services layer:
-  python -m unittest tests/unit/services/test_purchase.py  
-  python -m unittest tests/unit/services/test_reseller.py  
+> python -m unittest tests/unit/services/test_purchase.py  
+> python -m unittest tests/unit/services/test_reseller.py  
 
 ## Run IT tests:
-  python -m unittest tests/integration/test_routes.py   
+> python -m unittest tests/integration/test_routes.py   
