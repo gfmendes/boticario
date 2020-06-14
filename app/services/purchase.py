@@ -18,7 +18,7 @@ class PurchaseService():
 
   def list_current_month_purchases(self, cpf):
     today = datetime.date.today()
-    purchases = PurchaseData().find_purchases_month({"cpf" : cpf}, today.month, today.year)
+    purchases = PurchaseData().find_monthly_purchases({"cpf" : cpf, "month" : today.month, "year" : today.year})
     total_amount = sum(p["amount"] for p in purchases)
     for p in purchases:
       p['cash_back'] = self.apply_cache_back(total_amount, p['amount'])
@@ -28,7 +28,7 @@ class PurchaseService():
     if total_amount < 1000 :      
       amount *= 0.1
     elif total_amount <= 1500 :
-        amount *= 0.15  
+      amount *= 0.15  
     else:
       amount *= 0.2 
     return amount

@@ -9,12 +9,12 @@ class PurchaseCollection():
     database.purchase.insert_one(purchase)
     return purchase
 
-  def find_all_current_month(self, key, month, year):
+  def find_all_per_month(self, key):
     
     result = database.purchase.find(
       { "$and": [  
-          {"$expr": { "$eq": [{ "$year": [{ "$dateFromString": { "dateString" : "$date" }}]}, year]}},
-          {"$expr": { "$eq": [{ "$month": [{ "$dateFromString": { "dateString" : "$date" }}]}, month]}},
+          {"$expr": { "$eq": [{ "$year": [{ "$dateFromString": { "dateString" : "$date" }}]}, key['year']]}},
+          {"$expr": { "$eq": [{ "$month": [{ "$dateFromString": { "dateString" : "$date" }}]}, key['month']]}},
           { "cpf" : key['cpf']}
       ]}, {'_id': False})
     return list(result)

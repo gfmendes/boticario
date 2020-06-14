@@ -7,8 +7,8 @@ class PurchaseData():
   def add_purchase(self, purchase):
     return PurchaseCollection().add(purchase)
   
-  def find_purchases_month(self, key, month, year):
-    return PurchaseCollection().find_all_current_month(key, month, year)
+  def find_monthly_purchases(self, key):
+    return PurchaseCollection().find_all_current_month(key)
 
 class ResellerData():
   def add_reseller(self, reseller):
