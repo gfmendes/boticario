@@ -4,7 +4,7 @@
 <pre>
 <b>cashback/</b>
 <b>|--controller</b>
-   <b>|--<b>business_resources.py</b> - Endpoints related to cashback business logic such as add reseller, list purchases, etc.
+   <b>|--business_resources.py</b> - Endpoints related to cashback business logic such as add reseller, list purchases, etc.
    <b>|--login_resources.py</b> - Endpoints related to login and auth token data.
    <b>|--schema_validation.py</b> - Json schema validations for app endpoints.
 <b>|--data/</b>
