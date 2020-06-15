@@ -1,7 +1,8 @@
 import json
 import pymongo
 
-client = pymongo.MongoClient("mongodb+srv://gmendes:Q1w2e3r4!@cluster0-zmuno.mongodb.net/boticario?retryWrites=true&w=majority")
+#Database URL, user and pass should be externalized. 
+client = pymongo.MongoClient("mongodb+srv://boticario-dev:Dummypasswd@cluster0-zmuno.mongodb.net/boticario?retryWrites=true&w=majority")
 database = client.boticario
 
 class PurchaseCollection():

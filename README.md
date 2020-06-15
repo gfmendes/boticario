@@ -25,6 +25,11 @@
      <b>|--test_reseller.py</b> - Reseller service unit tests.
 </pre>
 
+## Configuring dev environment - pipenv needed: https://pypi.org/project/pipenv/
+> pipenv --python 3
+> pipenv install
+> pipenv shell
+
 ## Running the application:
 #Unix
 > export FLASK_APP=cashback/app.py  

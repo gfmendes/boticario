@@ -8,6 +8,7 @@ class ResellerIntegrationTest(unittest.TestCase) :
 
   def setUp(self):
     self.app = app.test_client()
+    #setting up mongo to point to a test database
     mongo_collections.database = mongo_collections.client.boticario_tests
 
   def test_add_new_reseller(self):
@@ -47,14 +48,14 @@ class ResellerIntegrationTest(unittest.TestCase) :
     payload_login = json.dumps({"email":"snow@email.com","password":"12345678"}) 
     #When
     self._add_reseller_request(payload_add_reseller)
-    login_response = self._login_request(payload_login)
-    response = self.app.get('/cashback/credit/05138291998', headers={'Content-Type': 'application/json', 'Authorization' : 'Bearer '+ login_response.json['access_token']})
+    access_tokens = self._login_request(payload_login)
+    response = self._get_cashback_credit_request('15138291498', access_tokens)
     #Then
     self.assertEqual(200, response.status_code)
     self.assertIn("credit", response.json.keys())
 
   def test_add_purchase(self):
-        #Given
+    #Given
     payload_add_reseller = json.dumps({"cpf":"15138291498","name":"John","surname":"Galt","email":"snow@email.com","password":"12345678"})
     payload_add_purchase = json.dumps({"cpf":"15138291498", "amount":700.01, "code":999, "date":"2021-06-08"})
     payload_login = json.dumps({"email":"snow@email.com","password":"12345678"}) 
@@ -102,7 +103,16 @@ class ResellerIntegrationTest(unittest.TestCase) :
     }
     route = '/cashback/purchase/'+cpf
     return self.app.get(route, headers=head)
+  
+  def _get_cashback_credit_request(self, cpf, access_tokens):
+    head={
+      'Content-Type': 'application/json' ,
+      'Authorization' : 'Bearer '+ access_tokens.json['access_token']
+    }
+    route = '/cashback/credit/'+cpf
+    return self.app.get(route, headers=head)
 
   def tearDown(self):
+    #removing all testcase data from mongo test database
     for collection in mongo_collections.database.list_collection_names():
       mongo_collections.database.drop_collection(collection)
