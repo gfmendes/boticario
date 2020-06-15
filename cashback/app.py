@@ -15,7 +15,7 @@ jwt = JWTManager(app)
 api = Api(app)
 init_routes(api)
 
-#logging
+#logging (examples of use in service modules)
 logger = logging.getLogger()
 handler = logging.StreamHandler()
 formatter = logging.Formatter('%(asctime)s %(name)-12s %(levelname)-8s %(message)s')

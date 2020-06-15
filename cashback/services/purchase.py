@@ -2,6 +2,7 @@ import logging
 import datetime
 from cashback.data.data_access import ResellerData, PurchaseData, CashBackData
 
+ERROR_RESELLER_CPF_NOT_EXISTS = {'error':'reseller cpf does not exists'}
 PRE_APPROVED_RESELLERS = ['15350946056'] #This data should be externalized in an API call or database
 
 class PurchaseService():
@@ -23,7 +24,7 @@ class PurchaseService():
    
     if not cpf_check: 
       self.log.error("_validate_purchase::Reseller CPF=%s not found.",purchase['cpf'])
-      return {'error':'reseller cpf does not exists'}
+      return ERROR_RESELLER_CPF_NOT_EXISTS
 
   def list_current_month_purchases(self, cpf):
     self.log.info("list_current_month_purchases::Listing monthly purchases of cpf=%s", cpf)
@@ -44,5 +45,6 @@ class PurchaseService():
     elif total_amount <= 1500 : return amount * 0.15  
     else: return amount * 0.2 
 
-  def get_cashback_amount(self, cpf):      
+  def get_cashback_amount(self, cpf):
+    self.log.info("get_cashback_amount::retrieving cashback amount from cpf=%s", cpf)
     return CashBackData().get_cashback_amount(cpf)
