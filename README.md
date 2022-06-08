@@ -1,4 +1,4 @@
-# Proposed solution to Boticario's backend challenge.
+# Python flask app.
 
 ## Modules description:
 <pre>
